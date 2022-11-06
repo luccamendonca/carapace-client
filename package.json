@@ -6,6 +6,7 @@
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "@mui/material": "latest",
+    "@mui/icons-material": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "react": "latest",

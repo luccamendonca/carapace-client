@@ -1,13 +1,12 @@
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import { Typography } from '@mui/material';
-import { sendGrpcCommand } from './client';
+import { sendCmd, Cmd } from '../client';
 import TileItem from './TileItem'
 
 type Props = {
   title: string,
-  command: string,
-  attrs?: string,
+  cmd: Cmd,
 };
 
 type State = {
@@ -24,8 +23,8 @@ class TileInfo extends React.Component<Props, State> {
 
   componentDidMount() {
     const updateValue = async () => {
-      const { command, attrs } = this.props;
-      const value = await sendGrpcCommand(command, attrs);
+      const { cmd } = this.props;
+      const value = await sendCmd(cmd);
       this.setState({ value: value.getMessage() });
     };
     updateValue();
@@ -34,6 +33,7 @@ class TileInfo extends React.Component<Props, State> {
   render() {
     const { title } = this.props;
     const { value } = this.state;
+
     return (
       <Grid item xs={2}>
         <TileItem elevation={5}>
