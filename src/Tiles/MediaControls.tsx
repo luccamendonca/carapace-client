@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import Grid from '@mui/material/Grid';
+import { Grid, IconButton } from '@mui/material';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
@@ -9,7 +9,7 @@ import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import { VolumeOff } from '@mui/icons-material';
 
 import { sendCmd, Cmd } from '../client';
-import TileItem from './TileItem';
+import TileIconButton from './TileIconButton';
 
 
 type Props = {
@@ -30,48 +30,35 @@ class MediaControls extends React.Component<Props, State> {
 
   render() {
     const { prev, playPause, next, volDown, volUp, volMute } = this.props;
-    const style = { fontSize: 60 };
+    const buttonStyle = { fontSize: 60, };
+    const gridItemStyle = { minHeight: 100, height: 100 };
 
-    return (
-      <>
-        {prev &&
-          <Grid item xs={2}>
-            <TileItem style={style} aria-label="prev" onClick={async () => await sendCmd(prev)}>
-              <SkipPreviousIcon fontSize="inherit" />
-            </TileItem>
-          </Grid>}
-        {playPause &&
-          <Grid item xs={2}>
-            <TileItem style={style} aria-label="playPause" onClick={async () => await sendCmd(playPause)}>
-              <PlayArrowIcon fontSize="inherit" />
-            </TileItem>
-          </Grid>}
-        {next &&
-          <Grid item xs={2}>
-            <TileItem style={style} aria-label="next" onClick={async () => await sendCmd(next)}>
-              <SkipNextIcon fontSize="inherit" />
-            </TileItem>
-          </Grid>}
-        {volDown &&
-          <Grid item xs={2}>
-            <TileItem style={style} aria-label="volDown" onClick={async () => await sendCmd(volDown)}>
-              <VolumeDownIcon fontSize="inherit" />
-            </TileItem>
-          </Grid>}
-        {volUp &&
-          <Grid item xs={2}>
-            <TileItem style={style} aria-label="volUp" onClick={async () => await sendCmd(volUp)}>
-              <VolumeUpIcon fontSize="inherit" />
-            </TileItem>
-          </Grid>}
-        {volMute &&
-          <Grid item xs={2}>
-            <TileItem style={style} aria-label="volUp" onClick={async () => await sendCmd(volMute)}>
-              <VolumeOff fontSize="inherit" />
-            </TileItem>
-          </Grid>}
-      </>
-    );
+    return <>
+      {prev &&
+        <TileIconButton cmd={prev}>
+          <SkipPreviousIcon fontSize="inherit" />
+        </TileIconButton>}
+      {playPause &&
+        <TileIconButton cmd={playPause}>
+          <PlayArrowIcon fontSize="inherit" />
+        </TileIconButton>}
+      {next &&
+        <TileIconButton cmd={next}>
+          <SkipNextIcon fontSize="inherit" />
+        </TileIconButton>}
+      {volDown &&
+        <TileIconButton cmd={volDown}>
+          <VolumeDownIcon fontSize="inherit" />
+        </TileIconButton>}
+      {volUp &&
+        <TileIconButton cmd={volUp}>
+          <VolumeUpIcon fontSize="inherit" />
+        </TileIconButton>}
+      {volMute &&
+        <TileIconButton cmd={volMute}>
+          <VolumeOff fontSize="inherit" />
+        </TileIconButton>}
+    </>;
   }
 }
 

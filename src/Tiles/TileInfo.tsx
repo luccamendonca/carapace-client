@@ -35,8 +35,8 @@ class TileInfo extends React.Component<Props, State> {
     const { value } = this.state;
 
     return (
-      <Grid item xs={2}>
-        <TileItem elevation={5}>
+      <Grid item xs={6} sm={2}>
+        <TileItem elevation={3}>
           <Typography variant="h4">{title}</Typography>
           <Typography variant="h3" fontWeight={"bold"}>{value}</Typography>
         </TileItem>
