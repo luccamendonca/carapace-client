@@ -24,7 +24,13 @@ class DisplayInfo extends React.Component<Props, State> {
     const volMute: Cmd = { command: "volctrl", args: "mute" };
     const cpuTemp: Cmd = { command: "cpu-temp" };
     const mem: Cmd = { command: "mem-available" };
-    const goToDesktop1: Cmd = { command: 'i3-msg', args: 'workspace 1' };
+
+    let desktopTiles = [];
+    for (let i in Array.from({ length: 10 }, (_, i) => i + 1)) {
+      const cmd: Cmd = { command: 'i3-msg', args: `workspace ${i}` };
+      desktopTiles.push(<TileIconButton cmd={cmd}> {i} </TileIconButton>);
+    }
+
 
     return (
       <>
@@ -44,9 +50,7 @@ class DisplayInfo extends React.Component<Props, State> {
         </ButtonGridContainer>
 
         <ButtonGridContainer>
-          <TileIconButton cmd={goToDesktop1} >
-            1
-          </TileIconButton>
+          {desktopTiles}
         </ButtonGridContainer>
       </>
     );
