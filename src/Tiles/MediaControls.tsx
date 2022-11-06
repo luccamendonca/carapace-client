@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import { Grid, IconButton } from '@mui/material';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
@@ -8,7 +7,7 @@ import VolumeDownIcon from '@mui/icons-material/VolumeDown';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import { VolumeOff } from '@mui/icons-material';
 
-import { sendCmd, Cmd } from '../client';
+import { Cmd } from '../client';
 import TileIconButton from './TileIconButton';
 
 
@@ -30,8 +29,6 @@ class MediaControls extends React.Component<Props, State> {
 
   render() {
     const { prev, playPause, next, volDown, volUp, volMute } = this.props;
-    const buttonStyle = { fontSize: 60, };
-    const gridItemStyle = { minHeight: 100, height: 100 };
 
     return <>
       {prev &&
