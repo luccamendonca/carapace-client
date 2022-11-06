@@ -37,7 +37,7 @@ class DisplayInfo extends React.Component<Props, State> {
             volMute={volMute} />
         </Grid>
         <Grid container direction="row" style={{ textAlign: 'center' }} columnSpacing={4}>
-          <TileInfo title="CPU" cmd={cpuTemp} />
+          <TileInfo autoRefresh title="CPU" cmd={cpuTemp} />
           <TileInfo title="Mem" cmd={mem} />
         </Grid>
       </>
