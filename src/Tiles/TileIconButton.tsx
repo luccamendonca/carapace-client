@@ -25,11 +25,11 @@ class TileIconButton extends React.Component<Props, State> {
 
   render() {
     const buttonStyle = { fontSize: 60, };
-    const gridItemStyle = { minHeight: 100, height: 100 };
+    const gridItemStyle = { height: 125 };
 
     return (
-      <Grid item xs={4} sm={2} style={gridItemStyle}>
-        <IconButton style={buttonStyle} onClick={this.handleClick}>
+      <Grid item xs={4} sm={2} style={gridItemStyle} onClick={this.handleClick}>
+        <IconButton style={buttonStyle}>
           {this.props.children}
         </IconButton>
       </Grid>

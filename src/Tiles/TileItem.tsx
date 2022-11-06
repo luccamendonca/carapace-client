@@ -9,6 +9,8 @@ const TileItem = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(1),
     textAlign: 'center',
     alignItems: 'center',
+    userSelect: 'none',
+    height: 125,
 }));
 
 export default TileItem;
