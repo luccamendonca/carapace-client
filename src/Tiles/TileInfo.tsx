@@ -57,7 +57,7 @@ class TileInfo extends React.Component<Props, State> {
 
     return (
       <Grid item xs={6} sm={2}>
-        <TileItem elevation={3} onClick={async () => await this.updateValue()}>
+        <TileItem elevation={1} onClick={async () => await this.updateValue()}>
           <Typography variant="h4">{title}</Typography>
           <Typography variant="h3" fontWeight={"bold"}>{value}</Typography>
         </TileItem>

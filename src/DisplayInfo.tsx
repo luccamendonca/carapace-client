@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-import Grid from '@mui/material/Grid';
-
 import TileInfo from './Tiles/TileInfo';
 import MediaControls from './Tiles/MediaControls';
 import { Cmd } from './client';
+import TileIconButton from './Tiles/TileIconButton';
+import ButtonGridContainer from './ButtonGridContainer';
 
 type Props = {};
 type State = {};
@@ -24,10 +24,11 @@ class DisplayInfo extends React.Component<Props, State> {
     const volMute: Cmd = { command: "volctrl", args: "mute" };
     const cpuTemp: Cmd = { command: "cpu-temp" };
     const mem: Cmd = { command: "mem-available" };
+    const goToDesktop1: Cmd = { command: 'i3-msg', args: 'workspace 1' };
 
     return (
       <>
-        <Grid container direction="row" style={{ textAlign: 'center' }} columnSpacing={4}>
+        <ButtonGridContainer>
           <MediaControls
             prev={prev}
             playPause={playPause}
@@ -35,11 +36,18 @@ class DisplayInfo extends React.Component<Props, State> {
             volDown={volDown}
             volUp={volUp}
             volMute={volMute} />
-        </Grid>
-        <Grid container direction="row" style={{ textAlign: 'center' }} columnSpacing={4}>
+        </ButtonGridContainer>
+
+        <ButtonGridContainer>
           <TileInfo autoRefresh title="CPU" cmd={cpuTemp} />
-          <TileInfo title="Mem" cmd={mem} />
-        </Grid>
+          <TileInfo autoRefresh title="Mem" cmd={mem} />
+        </ButtonGridContainer>
+
+        <ButtonGridContainer>
+          <TileIconButton cmd={goToDesktop1} >
+            1
+          </TileIconButton>
+        </ButtonGridContainer>
       </>
     );
   }

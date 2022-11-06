@@ -7,10 +7,14 @@ const TileItem = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
     cursor: 'pointer',
     padding: theme.spacing(1),
+    display: 'flex',
+    flexDirection: 'column',
     textAlign: 'center',
     alignItems: 'center',
+    justifyContent: 'center',
     userSelect: 'none',
     height: 125,
+    // marginBottom: 20,
 }));
 
 export default TileItem;

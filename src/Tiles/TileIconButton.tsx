@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid';
 import { IconButton } from '@mui/material';
 
 import { sendCmd, Cmd } from '../client';
+import TileItem from './TileItem';
 
 type Props = {
   cmd: Cmd,
@@ -25,13 +26,14 @@ class TileIconButton extends React.Component<Props, State> {
 
   render() {
     const buttonStyle = { fontSize: 60, };
-    const gridItemStyle = { height: 125 };
 
     return (
-      <Grid item xs={4} sm={2} style={gridItemStyle} onClick={this.handleClick}>
-        <IconButton style={buttonStyle}>
-          {this.props.children}
-        </IconButton>
+      <Grid item xs={4} sm={2} onClick={this.handleClick} >
+        <TileItem>
+          <IconButton style={buttonStyle}>
+            {this.props.children}
+          </IconButton>
+        </TileItem>
       </Grid>
     );
   }
