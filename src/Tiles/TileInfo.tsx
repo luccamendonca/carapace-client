@@ -9,6 +9,7 @@ import TileItem from './TileItem'
 type Props = {
   title: string,
   cmd: Cmd,
+  autoRefresh?: boolean,
 };
 
 type State = {
@@ -23,13 +24,31 @@ class TileInfo extends React.Component<Props, State> {
     };
   }
 
+  timerID: any;
+
   componentDidMount() {
-    const updateValue = async () => {
-      const { cmd } = this.props;
-      const value = await sendCmd(cmd);
-      this.setState({ value: value.getMessage() });
-    };
-    updateValue();
+    const { autoRefresh } = this.props;
+    if (autoRefresh === true) {
+      this.timerID = setInterval(
+        () => this.updateValue(),
+        1000
+      );
+    } else {
+      this.updateValue();
+    }
+  }
+
+  componentWillUnmount() {
+    const { autoRefresh } = this.props;
+    if (autoRefresh === true) {
+      clearInterval(this.timerID);
+    }
+  }
+
+  updateValue = async () => {
+    const { cmd } = this.props;
+    const value = await sendCmd(cmd);
+    this.setState({ value: value.getMessage() });
   }
 
   render() {
@@ -38,7 +57,7 @@ class TileInfo extends React.Component<Props, State> {
 
     return (
       <Grid item xs={6} sm={2}>
-        <TileItem elevation={3}>
+        <TileItem elevation={3} onClick={async () => await this.updateValue()}>
           <Typography variant="h4">{title}</Typography>
           <Typography variant="h3" fontWeight={"bold"}>{value}</Typography>
         </TileItem>
